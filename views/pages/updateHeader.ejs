@@ -1,0 +1,126 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="col-md-6">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Header Section</h3>
+          </div>
+  
+        
+  
+          <!-- Form Start -->
+          <form action="/header/update/<%= header[0].id %>" method="POST" enctype="multipart/form-data" id="form-upload">
+            <div class="card-body">
+              <!-- Logo Text -->
+              <div class="form-group">
+                <label for="logoText">Logo Text</label>
+                <input
+                  type="text"
+                  id="logoText"
+                  name="logoText"
+                  class="form-control"
+                  placeholder="Enter Logo Text"
+                  value="<%= header[0].logoText %>"
+                  required
+                  autocomplete="off"
+                >
+              </div>
+  
+              <!-- Logo Image -->
+              <div class="form-group">
+                <label for="logoImage">Logo Image (optional)</label>
+                <% if (header[0].logoImage) { %>
+                  <div class="mb-2">
+                    <img src="/siteLogo/<%= header[0].logoImage %>" alt="Logo Image" width="150">
+                  </div>
+                <% } %>
+                <input
+                  type="file"
+                  id="logoImage"
+                  name="logoImage"
+                  class="form-control"
+                  accept=".jpg,.jpeg,.png,.svg"
+                  autocomplete="off"
+                >
+              </div>
+  
+            
+              <hr />
+  
+              <!-- Menu Items -->
+              <h5>Edit Menu Items</h5>
+              <div id="menuItemsWrapper">
+                
+                  
+                    <% header.forEach((headerItem, index) => { %>
+                      <% headerItem.menuItems.forEach((menuItem, index) => { %>
+                     
+                     
+                        <div class="menu-item mb-3">
+                          <div class="form-group">
+    
+                            <label for="menuLabel<%= index + 1 %>">Menu Label</label>
+                            <input type="text" name="menuItems[<%= index %>][label]" class="form-control" value="<%= menuItem.label %>" placeholder="e.g., Home" required autocomplete="off">
+                          </div>
+      
+                          <div class="form-group">
+                            <label for="menuUrl<%= index + 1 %>">Menu URL</label>
+                            <input type="text" name="menuItems[<%= index %>][url]" class="form-control" value="<%= menuItem.url %>" placeholder="e.g., /home" required autocomplete="off">
+                          </div>
+      
+      
+                          <hr>
+                        </div>
+                      
+    
+                      <% }); %>
+                      <% }); %>
+
+                   
+                
+              </div>
+  
+              <!-- Add More Button -->
+              <button type="button" class="btn btn-secondary mb-3" id="addMenuItem">Add More Menu Items</button>
+  
+              <!-- Submit -->
+              <div class="card-footer mt-3">
+                <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+            </div>
+          </form>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- JS for adding dynamic menu items -->
+  <script>
+    // let menuIndex = `<%= header[0].menuItems ? header[0].menuItems.length : 1 %>`;
+    let menuIndex = document.querySelectorAll('#menuItemsWrapper .menu-item').length || 0;
+    document.getElementById('addMenuItem').addEventListener('click', () => {
+      const wrapper = document.getElementById('menuItemsWrapper');
+      const menuItemHTML = `
+        <div class="menu-item mb-3">
+          <div class="form-group">
+            <label for="menuLabel${menuIndex + 1}">Menu Label</label>
+            <input type="text" name="menuItems[${menuIndex}][label]" class="form-control" placeholder="e.g., Home" required autocomplete="off">
+          </div>
+  
+          <div class="form-group">
+            <label for="menuUrl${menuIndex + 1}">Menu URL</label>
+            <input type="text" name="menuItems[${menuIndex}][url]" class="form-control" placeholder="e.g., /home" required autocomplete="off">
+          </div>
+  
+         
+  
+          <hr>
+        </div>
+      `;
+  
+      wrapper.insertAdjacentHTML('beforeend', menuItemHTML);
+      menuIndex++;
+    });
+  </script>
+  

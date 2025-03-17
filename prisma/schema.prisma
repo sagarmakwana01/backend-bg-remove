@@ -1,0 +1,115 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int     @id @default(autoincrement())
+  name        String?
+  email       String  @unique
+  password    String?
+  user_verify String?
+  provider    String  @default("local")
+  passwordResetToken  String?   
+  passwordResetExpires DateTime?
+  role        Role?   @default(User)        
+  block        Block?   @default(No)  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt      
+}
+
+enum Role {
+  User
+  Admin
+}
+
+enum Block {
+  Yes
+  No
+}
+
+model Header {
+  id        Int        @id @default(autoincrement())
+  logoText  String
+  logoImage String?
+  menuItems MenuItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model MenuItem {
+  id       Int    @id @default(autoincrement())
+  label    String
+  url      String
+  headerId Int
+  header   Header @relation(fields: [headerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model Footer {
+  id           Int      @id @default(autoincrement())
+  logoText     String
+  logoImage    String?
+  copyright    String?
+  socialMedia  Json // Array of objects with platform and link
+  companyLinks Json // Array of objects with title and url
+  toolsAPI     Json // Array of objects with title and url
+  howToUse     Json // Array of objects with title and url
+  support      Json // Array of objects with title and url
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model WhyChooseUsSecond {
+  id          Int      @id @default(autoincrement())
+  linkName    String
+  link        String
+  iconUrl     String
+  imageUrl    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+
+
+model Testimonial {
+  id                 Int      @id @default(autoincrement())
+  author_name        String
+  author_designation String
+  description        String // The paragraph describing the section
+  link               String
+  author_image       String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model WhyChooseUsFirst {
+  id       Int     @id @default(autoincrement())
+  tabName     String  // Tab name (e.g., "Products", "People", etc.)
+  tabImages   Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model subscription {
+  id        Int      @id @default(autoincrement())
+  email     String  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
+}

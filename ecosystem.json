@@ -1,0 +1,12 @@
+{
+    "apps": [
+      {
+        "name": "baby-frame-app",
+        "script": "app.js",
+        "exec_mode": "cluster", 
+        "instances": 2, 
+        "kill_timeout": 600000, 
+        "restart_delay": 5000
+      }
+    ]
+  }

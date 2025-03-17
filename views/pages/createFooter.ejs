@@ -1,0 +1,252 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="col-md-8">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Add Footer</h3>
+          </div>
+  
+          <div class="mt-3">
+            <% if (message) { %>
+              <div class="alert <%= message.type === 'success' ? 'alert-success' : 'alert-danger' %> alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <%= message.message %>
+              </div>
+            <% } %>
+          </div>
+  
+          <!-- Form Start -->
+          <form action="/footer" method="POST" enctype="multipart/form-data" id="form-footer">
+            <div class="card-body">
+  
+              <!-- Logo Text -->
+              <div class="form-group">
+                <label for="logoText">Logo Text</label>
+                <input
+                  type="text"
+                  id="logoText"
+                  name="logoText"
+                  class="form-control"
+                  placeholder="Enter Logo Text"
+                  required
+                  autocomplete="off"
+                >
+              </div>
+  
+              <!-- Logo Image -->
+              <div class="form-group">
+                <label for="logoImage">Logo Image (optional)</label>
+                <input
+                  type="file"
+                  id="logoImage"
+                  name="logoImage"
+                  class="form-control"
+                  accept=".jpg,.jpeg,.png,.svg"
+                  autocomplete="off"
+                >
+              </div>
+  
+              <hr />
+  
+              <!-- Social Media Links -->
+              <h5>Social Media Links</h5>
+              <div id="socialMediaWrapper">
+                <div class="social-media-item mb-3">
+                 
+                  <div class="form-group">
+                    <label>Link</label>
+                    <input type="text" name="socialMedia[0][link]" class="form-control" placeholder="e.g., https://facebook.com" required autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <label>Image</label>
+                    <input type="file" name="socialMedia[0][image]" class="form-control" accept=".jpg,.jpeg,.png,.svg" autocomplete="off">
+                  </div>
+                  <hr />
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary mb-3" id="addSocialMedia">Add More Social Media Links</button>
+  
+              <!-- Repeat this block for Company Links, Tools API, How To Use, Support -->
+              <h5>Company Links</h5>
+              <div id="companyLinksWrapper">
+                <div class="company-link-item mb-3">
+                  <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="companyLinks[0][title]" class="form-control" placeholder="e.g., About Us" required autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <label>URL</label>
+                    <input type="text" name="companyLinks[0][url]" class="form-control" placeholder="e.g., /about" required autocomplete="off">
+                  </div>
+                  <hr />
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary mb-3" id="addCompanyLink">Add More Company Links</button>
+  
+              <!-- Tools API -->
+              <h5>Tools & API Links</h5>
+              <div id="toolsApiWrapper">
+                <div class="tools-api-item mb-3">
+                  <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="toolsAPI[0][title]" class="form-control" placeholder="e.g., API Docs" required autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <label>URL</label>
+                    <input type="text" name="toolsAPI[0][url]" class="form-control" placeholder="e.g., /api-docs" required autocomplete="off">
+                  </div>
+                  <hr />
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary mb-3" id="addToolsApi">Add More Tools & API Links</button>
+  
+              <!-- How To Use -->
+              <h5>How To Use Links</h5>
+              <div id="howToUseWrapper">
+                <div class="how-to-use-item mb-3">
+                  <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="howToUse[0][title]" class="form-control" placeholder="e.g., Guide" required autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <label>URL</label>
+                    <input type="text" name="howToUse[0][url]" class="form-control" placeholder="e.g., /guide" required autocomplete="off">
+                  </div>
+                  <hr />
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary mb-3" id="addHowToUse">Add More How To Use Links</button>
+  
+              <!-- Support Links -->
+              <h5>Support Links</h5>
+              <div id="supportWrapper">
+                <div class="support-item mb-3">
+                  <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="support[0][title]" class="form-control" placeholder="e.g., Help Center" required autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <label>URL</label>
+                    <input type="text" name="support[0][url]" class="form-control" placeholder="e.g., /help" required autocomplete="off">
+                  </div>
+                  <hr />
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary mb-3" id="addSupport">Add More Support Links</button>
+  
+              <!-- Submit -->
+              <div class="card-footer mt-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+  
+            </div>
+          </form>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    let socialIndex = 1;
+    let companyIndex = 1;
+    let toolsIndex = 1;
+    let howToUseIndex = 1;
+    let supportIndex = 1;
+  
+    document.getElementById('addSocialMedia').addEventListener('click', () => {
+      const wrapper = document.getElementById('socialMediaWrapper');
+      const html = `
+        <div class="social-media-item mb-3">
+          <div class="form-group">
+            <label>Link</label>
+            <input type="text" name="socialMedia[${socialIndex}][link]" class="form-control" required autocomplete="off">
+          </div>
+            <div class="form-group">
+          <label>Image (optional)</label>
+          <input type="file" name="socialMedia[${socialIndex}][image]" class="form-control" accept=".jpg,.jpeg,.png,.svg" autocomplete="off">
+        </div>
+          <hr />
+        </div>
+      `;
+      wrapper.insertAdjacentHTML('beforeend', html);
+      socialIndex++;
+    });
+  
+    document.getElementById('addCompanyLink').addEventListener('click', () => {
+      const wrapper = document.getElementById('companyLinksWrapper');
+      const html = `
+        <div class="company-link-item mb-3">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="companyLinks[${companyIndex}][title]" class="form-control" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label>URL</label>
+            <input type="text" name="companyLinks[${companyIndex}][url]" class="form-control" required autocomplete="off">
+          </div>
+          <hr />
+        </div>
+      `;
+      wrapper.insertAdjacentHTML('beforeend', html);
+      companyIndex++;
+    });
+  
+    document.getElementById('addToolsApi').addEventListener('click', () => {
+      const wrapper = document.getElementById('toolsApiWrapper');
+      const html = `
+        <div class="tools-api-item mb-3">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="toolsAPI[${toolsIndex}][title]" class="form-control" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label>URL</label>
+            <input type="text" name="toolsAPI[${toolsIndex}][url]" class="form-control" required autocomplete="off">
+          </div>
+          <hr />
+        </div>
+      `;
+      wrapper.insertAdjacentHTML('beforeend', html);
+      toolsIndex++;
+    });
+  
+    document.getElementById('addHowToUse').addEventListener('click', () => {
+      const wrapper = document.getElementById('howToUseWrapper');
+      const html = `
+        <div class="how-to-use-item mb-3">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="howToUse[${howToUseIndex}][title]" class="form-control" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label>URL</label>
+            <input type="text" name="howToUse[${howToUseIndex}][url]" class="form-control" required autocomplete="off">
+          </div>
+          <hr />
+        </div>
+      `;
+      wrapper.insertAdjacentHTML('beforeend', html);
+      howToUseIndex++;
+    });
+  
+    document.getElementById('addSupport').addEventListener('click', () => {
+      const wrapper = document.getElementById('supportWrapper');
+      const html = `
+        <div class="support-item mb-3">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="support[${supportIndex}][title]" class="form-control" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label>URL</label>
+            <input type="text" name="support[${supportIndex}][url]" class="form-control" required autocomplete="off">
+          </div>
+          <hr />
+        </div>
+      `;
+      wrapper.insertAdjacentHTML('beforeend', html);
+      supportIndex++;
+    });
+  </script>
+  

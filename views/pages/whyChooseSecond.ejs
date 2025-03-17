@@ -1,0 +1,116 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="col-md-8">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Edit Why Choose Us Second</h3>
+                </div>
+
+                <form action="/why-choose-2/update/<%= whyChoose2[0].id %>" method="POST" enctype="multipart/form-data"
+                    id="form-footer">
+                    <div class="card-body">
+                        <!-- heading1 -->
+                        <div class="form-group">
+                            <label for="heading1">Heading 1</label>
+                            <input type="text" id="heading1" name="heading1" class="form-control"
+                                value="<%= whyChoose2[0].heading1 %>" required autocomplete="off" />
+                        </div>
+                        <div class="form-group">
+                            <label for="heading2">Heading 2</label>
+                            <input type="text" id="heading2" name="heading2" class="form-control"
+                                value="<%= whyChoose2[0].heading2 %>" required autocomplete="off" />
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea type="text" id="description" name="description" class="form-control" required
+                                autocomplete="off"><%= whyChoose2[0].description %></textarea>
+                        </div>
+                        <hr />
+
+                        <hr />
+                        <!-- Social Media Links -->
+                        <h5>imageSection </h5>
+                        <div id="WhyChooseUsSecondWrapper">
+
+                            <% whyChoose2[0].slides.forEach((item, index)=> { %>
+                                <div class="social-media-item mb-3">
+                                    <div class="form-group">
+                                        <label>link Name</label>
+                                        <input type="text" name="linkName[<%= index %>][linkName]"
+                                            value="<%= item.linkName %>" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>link</label>
+                                        <input type="text" name="link[<%= index %>][link]" value="<%= item.link %>"
+                                            class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>icon</label>
+                                        <input type="text" name="iconUrl[<%= index %>][iconUrl]"
+                                            value="<%= item.iconUrl %>" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Existing Image</label>
+                                        <% if (item.imageUrl) { %>
+                                            <div class="mb-2">
+                                                <img src="/why-choose-us/<%= item.imageUrl %>" alt=" Image" width="100" />
+                                            </div>
+                                            <% } %>
+                                                <label>Upload New Image</label>
+                                                <input type="file" name="imageUrl[<%= index %>][imageUrl]"
+                                                    class="form-control" accept=".jpg,.jpeg,.png,.svg" />
+                                    </div>
+                                </div>
+
+                                <% }) %>
+                        </div>
+                        <button type="button" class="btn btn-secondary mb-3" id="addChooseUs2">Add More
+                            Links</button>
+                        <hr />
+
+                        <!-- Submit -->
+                        <div class="card-footer mt-3">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    let whyChoose2Index = 1;
+
+
+    document.getElementById('addChooseUs2').addEventListener('click', () => {
+        const wrapper = document.getElementById('WhyChooseUsSecondWrapper');
+        const html = `
+        <div class="social-media-item mb-3">
+          <div class="form-group">
+            <label>link Name</label>
+            <input type="text" name="linkName[${whyChoose2Index}][linkName]" class="form-control" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label>link </label>
+            <input type="text" name="link[${whyChoose2Index}][link]" class="form-control" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label>icon </label>
+            <input type="text" name="iconUrl[${whyChoose2Index}][iconUrl]" class="form-control" required autocomplete="off">
+          </div>
+
+           
+
+            <div class="form-group">
+          <label> Image</label>
+          <input type="file" name="imageUrl[${whyChoose2Index}][imageUrl]" class="form-control" accept=".jpg,.jpeg,.png,.svg" autocomplete="off">
+        </div>
+          <hr />
+        </div>
+      `;
+        wrapper.insertAdjacentHTML('beforeend', html);
+        whyChoose2Index++;
+    });
+
+</script>

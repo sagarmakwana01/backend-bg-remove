@@ -1,0 +1,103 @@
+
+<section class="content mt-3 ">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Data Table</h3>
+                    </div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="display nowrap" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Email</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% subscription.forEach((item,index)=> { %>
+                                        <tr data-row-id="<%= item.id %>">
+
+                                            <td>
+                                                <%= index + 1 %>
+                                            </td>
+                                            <td>
+                                                <%= item.email %>
+                                            </td>
+                                    
+                                            <td>
+
+                                                <i class='fas fa-trash-alt delete-subscription-btn'
+                                                    style="color:red; cursor:pointer;"
+                                                    data-subscription-id="<%= item.id %>"></i>
+                                            </td>
+                                        </tr>
+
+                                  
+                                        <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- jQuery (always first) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        let deleteSubscriptionId = null; // Store the frame ID to delete
+        let deleteRow = null; // Store the row to remove
+
+        // Event delegation for dynamically added elements
+        $(document).on('click', '.delete-subscription-btn', function () {
+            deleteSubscriptionId = $(this).data('subscription-id'); // Get frame ID
+            deleteRow = $(this).closest('tr'); // Get row reference
+
+            // Update modal content dynamically
+            $('#backgroundModalLabel').text('Confirm Deletion');
+            $('.modal-body').text('Are you sure you want to delete this Subscription ?');
+            $('#confirmDeleteSubscription').text('Yes, Delete').removeClass('btn-secondary').addClass('btn-danger');
+
+            // Show modal
+            $('#subscriptionDeleteModal').modal('show');
+        });
+
+        // Handle delete confirmation
+        $('#confirmDeleteSubscription').off('click').on('click', function () {
+            if (deleteSubscriptionId) {
+                $.ajax({
+                    url: `/delete-subscription/${deleteSubscriptionId}`,
+                    type: 'DELETE',
+                    success: function (response) {
+                        if (response.success) {
+                            deleteRow.remove(); // Remove row from table
+                            $('#backgroundDeleteModal').modal('hide'); // Close modal
+                            window.location.reload(); // Refresh page
+                        } else {
+                            console.error('Error:', response.message);
+                        }
+                    },
+                    error: function () {
+                        console.error('Failed to delete Subscription.');
+                    }
+                });
+            }
+        });
+    });
+
+
+</script>

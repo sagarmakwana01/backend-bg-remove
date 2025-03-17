@@ -1,0 +1,168 @@
+<div class="preloader flex-column justify-content-center align-items-center">
+  <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+</div>
+
+<!-- Navbar -->
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <!-- Left navbar links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+    </li>
+    
+  </ul>
+
+  <!-- Right navbar links -->
+  <ul class="navbar-nav ml-auto">
+    <!-- Navbar Search -->
+    <li class="nav-item">
+      <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+        <i class="fas fa-expand-arrows-alt"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
+        <i class="fas fa-th-large"></i>
+      </a>
+    </li>
+  </ul>
+
+    <!-- Profile Dropdown in Navbar using Bootstrap 4 -->
+    <div class="dropdown mr-3">
+      <button class="btn btn-secondary dropdown-toggle text-capitalize" type="button" id="profileDropdown" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+      
+        <%if(locals?.user.name){%>
+          <%= locals?.user.name %>
+        <% } else { %>
+          admin
+        <%}%>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+     
+         
+          <a class="dropdown-item <%= (currentPath == '/change-password') ? 'active' : '' %> " href="/change-password">
+            <i class="fas fa-key mr-2"></i>
+            Change Password
+          </a>
+            <div class="dropdown-divider"></div>
+            <form action="/logout" method="post" id="logoutForm">
+              <button type="submit" class="dropdown-item">
+                  <i class="fas fa-sign-out-alt mr-2"></i> Logout
+              </button>
+          </form>
+      </div>
+    </div>
+</nav>
+<!-- /.navbar -->
+ 
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="/" class="brand-link">
+    <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-light">Admin</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+   
+
+    <!-- SidebarSearch Form -->
+ 
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class  with font-awesome or any other icon font library -->
+         
+
+             
+        <li class="nav-item ">
+          <a href="/" class="nav-link  <%= (currentPath == '/') ? 'active' : '' %>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+              Dashboard
+            </p>
+          </a>
+        </li>
+  
+        <!-- <li class="nav-item">
+          <a href="/add-header" class="nav-link <%= (currentPath == '/add-header') ? 'active' : '' %>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Add Header</p>
+          </a>
+        </li> -->
+        <li class="nav-item">
+          <a href="/edit-header" class="nav-link <%= (currentPath == 'edit-header') ? 'active' : '' %>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Update Header</p>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a href="/babyframe" class="nav-link <%= (currentPath == '/babyframe') ? 'active' : '' %>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Baby Fram Add</p>
+          </a>
+        </li> -->
+        <!-- <li class="nav-item">
+          <a href="/add-footer" class="nav-link <%= (currentPath == '/add-footer') ? 'active' : '' %>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Add Footer</p>
+          </a>
+        </li> -->
+        <li class="nav-item">
+          <a href="/edit-footer" class="nav-link <%= (currentPath == '/edit-footer') ? 'active' : '' %>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Update Footer</p>
+          </a>
+        </li>
+      
+        <li class="nav-item">
+          <a href="/get-why-choose-2-table" class="nav-link <%= (currentPath == '/get-why-choose-2-table') ? 'active' : '' %>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Why Choose us 2 Table</p>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a href="/testimonials" class="nav-link <%= (currentPath == '/testimonials') ? 'active' : '' %>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Add Testimonial</p>
+          </a>
+        </li> -->
+      
+        <li class="nav-item">
+          <a href="/get-testimonial-table" class="nav-link <%= (currentPath == '/get-testimonial-table') ? 'active' : '' %>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Testimonial Table</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/subscribe-table" class="nav-link <%= (currentPath == '/subscribe-table') ? 'active' : '' %>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Subscribe</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/get-why-choose-first" class="nav-link <%= (currentPath == '/get-why-choose-first') ? 'active' : '' %>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Add Why Choose Us </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/why-choose-us-first-table" class="nav-link <%= (currentPath == '//why-choose-us-first-table') ? 'active' : '' %>">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Why Choose Us Table </p>
+          </a>
+        </li>
+        
+        </li>
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

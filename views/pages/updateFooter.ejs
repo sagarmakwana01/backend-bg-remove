@@ -1,0 +1,343 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="col-md-8">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Edit Footer</h3>
+                </div>
+
+                <form action="/footer/update/<%= footer[0].id %>" method="POST" enctype="multipart/form-data"
+                    id="form-footer">
+                    <div class="card-body">
+                        <!-- Logo Text -->
+                        <div class="form-group">
+                            <label for="logoText">Logo Text</label>
+                            <input type="text" id="logoText" name="logoText" class="form-control"
+                                value="<%= footer[0].logoText %>" required autocomplete="off" />
+                        </div>
+<hr/>
+                        <!-- Logo Image -->
+                        <div class="form-group">
+                            <label for="logoImage">Logo Image</label>
+                            <% if (footer[0].logoImage) { %>
+                                <input type="file" id="logoImage" name="logoImage" class="form-control"
+                                accept=".jpg,.jpeg,.png,.svg" />
+                                <% } %>
+                                        <div class="mb-2">
+                                            <img src="/siteLogo/<%= footer[0].logoImage %>" alt="Logo Image" width="150">
+                                        </div>
+                        </div>
+                        <hr/>
+                        <!-- Social Media Links -->
+                        <h5>Social Media Section </h5>
+                        <div id="socialMediaWrapper">
+
+                            <% footer[0].socialMedia.forEach((item, index)=> { %>
+                                <div class="social-media-item mb-3">
+                                    <div class="form-group">
+                                        <label>Social Media Link</label>
+                                        <input type="text" name="socialMedia[<%= index %>][link]"
+                                            value="<%= item.link %>" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Existing Image</label>
+                                        <% if (item.image) { %>
+                                            <div class="mb-2">
+                                                <img src="/socialMedia/<%= item.image %>" alt="Social Image"
+                                                    width="100" />
+                                            </div>
+                                            <% } %>
+                                                <label>Upload New Image</label>
+                                                <input type="file" name="socialMedia[<%= index %>][image]"
+                                                    class="form-control" accept=".jpg,.jpeg,.png,.svg" />
+                                    </div>
+                                       <!-- Delete button -->
+      <button type="button" class="btn btn-danger delete-social" data-deleteSocial-id="<%= item.id %>">Delete</button>
+                                </div>
+
+                                <% }) %>
+                        </div>
+                        <button type="button" class="btn btn-secondary mb-3" id="addSocialMedia">Add More Social Media
+                            Links</button>
+                            <hr/>
+                        <!-- You can add dynamic adding functionality as needed -->
+
+                        <!-- Company Links -->
+                        <h5>Company Section</h5>
+                        <div id="companyLinksWrapper">
+                            <% footer[0].companyLinks.forEach((link, index)=> { %>
+                                <div class="company-link-item mb-3">
+                                    <div class="form-group">
+                                        <label>Company Title</label>
+                                        <input type="text" name="companyLinks[<%= index %>][title]"
+                                            value="<%= link.title %>" class="form-control" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Company URL</label>
+                                        <input type="text" name="companyLinks[<%= index %>][url]"
+                                            value="<%= link.url %>" class="form-control" required />
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                        <button type="button" class="btn btn-secondary mb-3" id="addCompanyLink">Add More Company
+                            Links</button>
+                            <hr/>
+                        <!-- Tools API -->
+                        <h5>Tools & API Section</h5>
+                        <div id="toolsApiWrapper">
+                            <% footer[0].toolsAPI.forEach((tool, index)=> { %>
+                                <div id="toolsApiWrapper">
+                                    <div class="tools-api-item mb-3">
+                                        <div class="form-group">
+                                            <label>Tools & API Title</label>
+                                            <input type="text" name="toolsAPI[<%= index %>][title]" class="form-control"
+                                                value="<%= tool.title %>" placeholder="e.g., API Docs" required
+                                                autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tools & API URL</label>
+                                            <input type="text" name="toolsAPI[<%= index %>][url]" class="form-control"
+                                                value="<%= tool.url %>" placeholder="e.g., /api-docs" required
+                                                autocomplete="off">
+                                        </div>
+                                     
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                        <button type="button" class="btn btn-secondary mb-3" id="addToolsApi">Add More Tools
+                            & API Links</button>
+                            <hr/>
+                        <!-- How To Use Links -->
+                        <h5>How To Use Section</h5>
+                        <div id="howToUseWrapper">
+                            <% footer[0].howToUse.forEach((howUse, index)=> { %>
+
+                                <div class="how-to-use-item mb-3">
+                                    <div class="form-group">
+                                        <label>How To Use Title</label>
+                                        <input type="text" name="howToUse[<%= index %>][title]"
+                                            value="<%= howUse.title %>" class="form-control" placeholder="e.g., Guide"
+                                            required autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>How To Use URL</label>
+                                        <input type="text" name="howToUse[<%= index %>][url]" value="<%= howUse.url %>"
+                                            class="form-control" placeholder="e.g., /guide" required autocomplete="off">
+                                    </div>
+                               
+                                </div>
+
+
+                                <% }) %>
+                        </div>
+                        <button type="button" class="btn btn-secondary mb-3" id="addHowToUse">Add
+                            More How To Use Links</button>
+                            <hr/>
+                        <!-- Support Links -->
+                        <h5>Support Section</h5>
+                        <div id="supportWrapper">
+                            <% footer[0].support.forEach((supportItem, index)=> { %>
+                                <div class="support-item mb-3">
+                                    <div class="form-group">
+                                        <label>Support  Title</label>
+                                        <input type="text" name="support[<%= index %>][title]"
+                                            value="<%= supportItem.title %>" class="form-control"
+                                            placeholder="e.g., Help Center" required autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Support  URL</label>
+                                        <input type="text" name="support[<%= index %>][url]"
+                                            value="<%= supportItem.url %>" class="form-control"
+                                            placeholder="e.g., /help" required autocomplete="off">
+                                    </div>
+                                  
+                                </div>
+                                <% }) %>
+                        </div>
+                        <button type="button" class="btn btn-secondary mb-3" id="addSupport">Add
+                            More Support Links</button>
+                        <hr />
+
+                        <!-- Logo Text -->
+                        <div class="form-group">
+                            <label for="copyright">Copyright Section</label>
+                            <textarea type="text" id="copyright" name="copyright" class="form-control"
+                                value="<%= footer[0].copyright %>" required
+                                autocomplete="off"><%= footer[0].copyright %></textarea>
+                        </div>
+                        <!-- Submit -->
+                        <div class="card-footer mt-3">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // Initialize the delete buttons when the page loads
+document.addEventListener('DOMContentLoaded', function () {
+  addDeleteHandlers();
+});
+
+// Function to add delete handlers to all delete buttons
+function addDeleteHandlers() {
+  document.querySelectorAll('.delete-social').forEach(button => {
+    button.addEventListener('click', async function () {
+      const socialId = this.getAttribute('data-id');
+      if (!socialId) {
+        alert('No ID found for this item!');
+        return;
+      }
+
+      const confirmDelete = confirm('Are you sure you want to delete this item?');
+      if (!confirmDelete) return;
+
+      try {
+        const res = await fetch(`/footer/delete-social/${socialId}`, {
+          method: 'DELETE'
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          alert('Deleted successfully!');
+          // Remove from DOM
+          this.closest('.social-media-item').remove();
+        } else {
+          alert('Failed to delete. Please try again.');
+        }
+
+      } catch (error) {
+        console.error('Error deleting:', error);
+        alert('An error occurred while deleting.');
+      }
+    });
+  });
+}
+
+</script>
+<script>
+  let socialIndex = document.querySelectorAll('#socialMediaWrapper .social-media-item').length || 0;
+  let companyIndex = document.querySelectorAll('#companyLinksWrapper .company-link-item').length || 0;
+  let toolsIndex = document.querySelectorAll('#toolsApiWrapper .tools-api-item').length || 0;
+  let howToUseIndex = document.querySelectorAll('#howToUseWrapper .how-to-use-item').length || 0;
+  let supportIndex = document.querySelectorAll('#supportWrapper .support-item').length || 0;
+
+  document.getElementById('addSocialMedia').addEventListener('click', () => {
+    const wrapper = document.getElementById('socialMediaWrapper');
+    const html = `
+      <div class="social-media-item mb-3">
+        <div class="form-group">
+          <label>Social Media Link</label>
+          <input type="text" name="socialMedia[${socialIndex}][link]" class="form-control" required autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Image (optional)</label>
+          <input type="file" name="socialMedia[${socialIndex}][image]" class="form-control" accept=".jpg,.jpeg,.png,.svg" autocomplete="off">
+        </div>
+        <button type="button" class="btn btn-danger remove-item">Remove</button>
+        <hr />
+      </div>
+    `;
+    wrapper.insertAdjacentHTML('beforeend', html);
+    socialIndex++;
+    addRemoveEvent();
+  });
+
+  document.getElementById('addCompanyLink').addEventListener('click', () => {
+    const wrapper = document.getElementById('companyLinksWrapper');
+    const html = `
+      <div class="company-link-item mb-3">
+        <div class="form-group">
+          <label>Company Title</label>
+          <input type="text" name="companyLinks[${companyIndex}][title]" class="form-control" required autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Company URL</label>
+          <input type="text" name="companyLinks[${companyIndex}][url]" class="form-control" required autocomplete="off">
+        </div>
+        <button type="button" class="btn btn-danger remove-item">Remove</button>
+        <hr />
+      </div>
+    `;
+    wrapper.insertAdjacentHTML('beforeend', html);
+    companyIndex++;
+    addRemoveEvent();
+  });
+
+  document.getElementById('addToolsApi').addEventListener('click', () => {
+    const wrapper = document.getElementById('toolsApiWrapper');
+    const html = `
+      <div class="tools-api-item mb-3">
+        <div class="form-group">
+          <label>Tools & API Title</label>
+          <input type="text" name="toolsAPI[${toolsIndex}][title]" class="form-control" required autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Tools & API URL</label>
+          <input type="text" name="toolsAPI[${toolsIndex}][url]" class="form-control" required autocomplete="off">
+        </div>
+        <button type="button" class="btn btn-danger remove-item">Remove</button>
+        <hr />
+      </div>
+    `;
+    wrapper.insertAdjacentHTML('beforeend', html);
+    toolsIndex++;
+    addRemoveEvent();
+  });
+
+  document.getElementById('addHowToUse').addEventListener('click', () => {
+    const wrapper = document.getElementById('howToUseWrapper');
+    const html = `
+      <div class="how-to-use-item mb-3">
+        <div class="form-group">
+          <label>How To Use Title</label>
+          <input type="text" name="howToUse[${howToUseIndex}][title]" class="form-control" required autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>How To Use URL</label>
+          <input type="text" name="howToUse[${howToUseIndex}][url]" class="form-control" required autocomplete="off">
+        </div>
+        <button type="button" class="btn btn-danger remove-item">Remove</button>
+        <hr />
+      </div>
+    `;
+    wrapper.insertAdjacentHTML('beforeend', html);
+    howToUseIndex++;
+    addRemoveEvent();
+  });
+
+  document.getElementById('addSupport').addEventListener('click', () => {
+    const wrapper = document.getElementById('supportWrapper');
+    const html = `
+      <div class="support-item mb-3">
+        <div class="form-group">
+          <label>Support Title</label>
+          <input type="text" name="support[${supportIndex}][title]" class="form-control" required autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Support URL</label>
+          <input type="text" name="support[${supportIndex}][url]" class="form-control" required autocomplete="off">
+        </div>
+        <button type="button" class="btn btn-danger remove-item">Remove</button>
+        <hr />
+      </div>
+    `;
+    wrapper.insertAdjacentHTML('beforeend', html);
+    supportIndex++;
+    addRemoveEvent();
+  });
+
+  // Function to add the remove event
+  function addRemoveEvent() {
+    document.querySelectorAll('.remove-item').forEach(button => {
+      button.addEventListener('click', function () {
+        this.parentElement.remove();
+      });
+    });
+  }
+</script>

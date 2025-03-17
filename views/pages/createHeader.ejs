@@ -1,0 +1,117 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="col-md-6">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Add Header</h3>
+          </div>
+  
+          <div class="mt-3">
+            <% if (message) { %>
+              <div class="alert <%= message.type === 'success' ? 'alert-success' : 'alert-danger' %> alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <%= message.message %>
+              </div>
+            <% } %>
+          </div>
+  
+          <!-- Form Start -->
+          <form action="/header" method="POST" enctype="multipart/form-data" id="form-upload">
+            <div class="card-body">
+           
+              <!-- Logo Text -->
+              <div class="form-group">
+                <label for="logoText">Logo Text</label>
+                <input
+                  type="text"
+                  id="logoText"
+                  name="logoText"
+                  class="form-control"
+                  placeholder="Enter Logo Text"
+                  required
+                  autocomplete="off"
+                >
+              </div>
+  
+              <!-- Logo Image -->
+              <div class="form-group">
+                <label for="logoImage">Logo Image (optional)</label>
+                <input
+                  type="file"
+                  id="logoImage"
+                  name="logoImage"
+                  class="form-control"
+                  accept=".jpg,.jpeg,.png,.svg"
+                  autocomplete="off"
+                >
+              </div>
+  
+          
+             
+  
+              <hr />
+  
+              <!-- Menu Items -->
+              <h5>Add Menu Items</h5>
+              <div id="menuItemsWrapper">
+                <div class="menu-item mb-3">
+                  <div class="form-group">
+                    <label for="menuLabel1">Menu Label</label>
+                    <input type="text" name="menuItems[0][label]" class="form-control" placeholder="e.g., Home" required autocomplete="off">
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="menuUrl1">Menu URL</label>
+                    <input type="text" name="menuItems[0][url]" class="form-control" placeholder="e.g., /home" required autocomplete="off">
+                  </div>
+  
+                
+  
+                  <hr>
+                </div>
+              </div>
+  
+              <!-- Add More Button -->
+              <button type="button" class="btn btn-secondary mb-3" id="addMenuItem">Add More Menu Items</button>
+  
+              <!-- Submit -->
+              <div class="card-footer mt-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- JS for adding dynamic menu items -->
+  <script>
+    let menuIndex = 1;
+  
+    document.getElementById('addMenuItem').addEventListener('click', () => {
+      const wrapper = document.getElementById('menuItemsWrapper');
+      const menuItemHTML = `
+        <div class="menu-item mb-3">
+          <div class="form-group">
+            <label for="menuLabel${menuIndex + 1}">Menu Label</label>
+            <input type="text" name="menuItems[${menuIndex}][label]" class="form-control" placeholder="e.g., Home" required autocomplete="off">
+          </div>
+  
+          <div class="form-group">
+            <label for="menuUrl${menuIndex + 1}">Menu URL</label>
+            <input type="text" name="menuItems[${menuIndex}][url]" class="form-control" placeholder="e.g., /home" required autocomplete="off">
+          </div>
+  
+         
+  
+          <hr>
+        </div>
+      `;
+  
+      wrapper.insertAdjacentHTML('beforeend', menuItemHTML);
+      menuIndex++;
+    });
+  </script>
+  

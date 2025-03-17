@@ -1,0 +1,32 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/static/createBackground.js":
+/*!****************************************!*\
+  !*** ./src/static/createBackground.js ***!
+  \****************************************/
+/***/ (() => {
+
+eval("$(document).ready(function () {\r\n    $(\"#multiplefileupload\").fileinput({\r\n        'theme': 'fa',\r\n        'uploadUrl': '#',\r\n        showRemove: true,\r\n        showUpload: false,\r\n        showZoom: true,\r\n        showCaption: false,\r\n        dropZoneEnabled: false,\r\n        browseClass: \"btn btn-primary\",\r\n        browseLabel: \"Select Images\",\r\n        browseIcon: \"<i class='fa fa-plus'></i>\",\r\n        overwriteInitial: true, // Ensure it doesn't keep old files\r\n        initialPreview: [], // No preloaded files\r\n        initialPreviewConfig: [],\r\n        initialPreviewAsData: true,\r\n        fileActionSettings: {\r\n            showUpload: false,\r\n            showZoom: true,\r\n        }\r\n    })\r\n    \r\n});\r\n\n\n//# sourceURL=webpack://babybirhtday/./src/static/createBackground.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./src/static/createBackground.js"]();
+/******/ 	
+/******/ })()
+;

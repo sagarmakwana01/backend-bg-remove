@@ -1,0 +1,221 @@
+body{ margin: 0; padding: 0; }
+
+.logo_dot{ width: 24px; height: 24px; display: inline-block; border-radius: 50%; background: #3bd671; }
+.logo_dot.is-pulse { -webkit-animation: pulse 2s infinite; animation: pulse 2s infinite; }
+.btn-google {
+	color: #545454;
+background-color: #ffffff;
+box-shadow: 0 1px 2px 1px #ddd;
+/* padding: 5px 8%; */
+font-size: 14px;
+line-height: 23px;
+width: 100%;
+}
+
+
+.or-container {
+align-items: center;
+color: #ccc;
+display: flex;
+margin: 12px 0;
+}
+
+.line-separator {
+background-color: #ccc;
+flex-grow: 5;
+height: 1px;
+}
+
+.or-label {
+flex-grow: 1;
+margin: 0 15px;
+text-align: center;
+}
+.social {
+    margin-bottom: 20px;
+}
+@keyframes pulse {
+	0% {
+		-webkit-box-shadow: 0 0 0 0 rgba(59, 214, 113, 0.4);
+		box-shadow: 0 0 0 0 rgba(59, 214, 113, 0.4);
+	}
+	70% {
+		-webkit-box-shadow: 0 0 0 10px transparent;
+		box-shadow: 0 0 0 10px transparent;
+	}
+	to {
+		-webkit-box-shadow: 0 0 0 0 transparent;
+		box-shadow: 0 0 0 0 transparent;
+	}
+}
+@-webkit-keyframes pulse {
+	0% {
+		-webkit-box-shadow: 0 0 0 0 rgba(59, 214, 113, 0.4);
+		box-shadow: 0 0 0 0 rgba(59, 214, 113, 0.4);
+	}
+	70% {
+		-webkit-box-shadow: 0 0 0 10px transparent;
+		box-shadow: 0 0 0 10px transparent;
+	}
+	to {
+		-webkit-box-shadow: 0 0 0 0 transparent;
+		box-shadow: 0 0 0 0 transparent;
+	}
+}
+.header_logo{ display: flex; align-items: center; padding: 40px 180px; }
+.header_logo img{ width: 190px; margin-left: 10px; }
+
+.copyright_wapper{position: relative; background-color: #253A59; width: 100%; height: 60px; }
+
+.hr_footer {width: 60%;height: 2px;background-color: #fff;margin: auto;}
+.copyright_text p {
+	margin: 0;
+	color: #fff;
+	font-family: Lato;
+	font-size: 17px;
+	font-weight: 400;
+	padding: 15px 0;
+}
+.form_wapper {display: flex; align-items: center;}
+.form_wapper_main{position: relative;}
+.form_wapper_left{
+	background-image: url(../img/signup/NAVIGATION-BAR.svg.svg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 50%;
+	height: calc(100vh - 60px);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100vh;
+}
+.form_wapper_right{ width: 50%; height: 100%; }
+.middel_section{text-align: center;}
+.middel_section p{ font-family: Lato; font-size: 17px; color: #fff; font-weight: 400; }
+.middel_section h2{font-family: Rajdhani;font-size: 30px;font-weight: 600;color: #fff;}
+
+.bottom_section{display: flex; align-items: center; justify-content: center;}
+.sign_up_img{padding: 0 10px;}
+
+.form_right_title h2{ font-size: 30px; font-family: Rajdhani; font-weight: 600; color: #000; }
+.form_right_title h1{ font-family: Lato; font-size: 17px; font-weight: 400; color: #000; }
+.form_right_title h1 a{ color: #3DE9B7; }
+
+.form_label{
+	text-align: left;
+	font-size: 17px;
+	font-family: Lato;
+	font-weight: 400;
+	color: #6E6467;
+	padding: 0 12px;
+}
+.form-group{position: relative;}
+.form-control.form_input{
+	position: relative;
+	text-align: left;
+	font-family: Rajdhani;
+	font-weight: 600;
+	font-size: 21px;
+	color: #000000;
+	border: 0;
+	border-radius: 0;
+	border-bottom: 1px solid #BEBEBE;
+	padding: 6px 12px;
+}
+.pass_icon{ position: absolute; top: 44px; right: 8px; color: #BEBEBE;}
+.form-control.form_input:focus{outline: unset; box-shadow: unset;}
+.form_btn button{
+	display: block;
+	width: 100%;
+	height: 50px;
+	box-shadow: 3px 3px 3px #FFFFFF2E;
+	border: 2px solid #ebebeb;
+	border-radius: 15px;
+	/* background-color: #ebebeb; */
+	letter-spacing: -0.14px;
+	color: #000000;
+	text-transform: capitalize;
+	text-align: center;
+	font-family: Rajdhani;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 50px;
+	margin: auto;
+	position: relative;
+	z-index: 2;
+
+}
+
+.remember_text {font-family: Lato; font-weight: 400; font-size: 17px; color: #707070;}
+.remember_text img{margin-right: 10px;}
+.form_label span{ color: #FF0000; }
+.lost_password{ font-family: Lato; font-weight: 400; font-size: 17px; color: #707070; }
+
+.form_btn a:before{
+	-webkit-transition: .5s all ease;
+	transition: .5s all ease;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	right: 50%;
+	bottom: 0;
+	opacity: 0;
+	content: '';
+	background-color: #fff;
+	border-radius: 15px;
+	z-index: -1;
+}
+.form_btn a:hover{ color:#000000;text-decoration: none; }
+.form_btn a:hover:before{
+	-webkit-transition: 0.5s all ease;
+	transition: 0.5s all ease;
+	left: 0;
+	right: 0;
+	opacity: 1;
+}
+
+
+@media(max-width: 991px){
+	.form_wapper_left{display: none;}
+	.form_wapper_right{
+		background-image: url(../img/signup/NAVIGATION-BAR.svg.svg);
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		width: 100%;
+		height: calc(100vh - 60px);
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+		.social {
+			gap: 10px;
+		}
+	}
+	.header_logo { display: flex; align-items: center; padding: 40px 30px;}
+	.sign_up_form{ padding: 0 10px; }
+	.form-control.form_input{background-color: unset; color: #fff;}
+	.form_right_title h2{ color: #fff; }
+	.form_right_title p{ color: #fff; }
+	.form_label{color: #fff; }
+	.remember_text{ color: #fff; }
+
+	.form-control.form_input::-webkit-input-placeholder { color: #fff !important;opacity: 1 !important; }
+	.form-control.form_input:-ms-input-placeholder { color: #fff !important; opacity: 1 !important; }
+	.form-control.form_input:-moz-placeholder,.form-control.form_input::-moz-placeholder {
+		color: #fff !important;
+		opacity: 1 !important;
+	}
+	.form-control.form_input::-ms-input-placeholder { color: #fff !important; opacity: 1 !important; }
+	.form-control.form_input::placeholder { color: #fff !important; opacity: 1 !important; }
+}
+
+@media(max-width: 767px){
+	.form_btn a{ width: 261px; height: 41px; font-size: 21px; line-height: 41px;}
+	.form-control.form_input{background-color: unset; font-size: 19px; color: #fff;}
+	.form_right_title h2{ color: #fff; font-size: 14px; }
+	.form_right_title p{ font-size: 14px; color: #fff; }
+	.form_label{color: #fff; font-size: 14px;}
+	.remember_text{ color: #fff; font-size: 14px;}
+	.lost_password{ font-size: 14px; color: #fff; }
+}
